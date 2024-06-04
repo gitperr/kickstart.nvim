@@ -2,4 +2,11 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+  vim.cmd [[
+  augroup terraform_fmt
+    autocmd!
+    autocmd BufWritePre *.tf silent! :%!terraform fmt -
+  augroup END
+]],
+}
